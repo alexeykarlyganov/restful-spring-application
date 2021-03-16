@@ -6,7 +6,16 @@ plugins {
 
 group = 'org.alexeykarlyganov'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+springBoot {
+    buildInfo()
+}
+
+jar {
+    baseName = rootProject.name
+    version = rootProject.version
+}
 
 repositories {
 	mavenCentral()

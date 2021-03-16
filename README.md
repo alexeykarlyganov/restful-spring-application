@@ -1,3 +1,3 @@
 # rest-spring-application
 
-Java 11 SE
+Java 8 SE
