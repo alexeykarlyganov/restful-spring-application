@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.kafka.core.*;
-import org.springframework.kafka.support.converter.BatchMessagingMessageConverter;
 import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
@@ -25,22 +24,12 @@ public class KafkaConsumerConfiguration {
     @Value("${kafka.group.id}")
     private String kafkaGroupId;
 
-    // listener for list of objects
-    /* @Bean
-    public KafkaListenerContainerFactory<?> batchFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, User> factory =
-                new ConcurrentKafkaListenerContainerFactory<>();
-
-        factory.setConsumerFactory(this.consumerFactory());
-        factory.setBatchListener(true);
-        factory.setMessageConverter(new BatchMessagingMessageConverter(new StringJsonMessageConverter()));
-
-        return factory;
-    } */
-
-    // listener for single object
+    /**
+     * The kafka listener for single object
+     * @return KafkaListenerContainerFactory
+     */
     @Bean
-    public KafkaListenerContainerFactory<?> kafkaListenerContainerFactory() {
+    public KafkaListenerContainerFactory<?> singleFactory() {
         ConcurrentKafkaListenerContainerFactory<String, Entry> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
 
