@@ -40,9 +40,9 @@ public class EntryServiceImpl implements EntryService {
     }
 
     @Override
-    @KafkaListener(topics = {"server.users"}, groupId = "server.broadcast")
+    @KafkaListener(topics = {"server.users"}, groupId = "server.broadcast", containerFactory = "singleFactory")
     public void receive(@Payload Entry entry, @Headers MessageHeaders headers) {
-        log.info("=> consumed {}", this.jsonToString(entry));
+        log.info("=> CONSUMED: {}", this.jsonToString(entry));
 
         headers.keySet().forEach(key -> log.info("{} --- {}", key, headers.get(key)));
     }
