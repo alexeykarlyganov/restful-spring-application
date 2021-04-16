@@ -1,4 +1,4 @@
-package org.alexeykarlyganov.rest.services.profile;
+package org.alexeykarlyganov.rest.services.entry;
 
 import org.alexeykarlyganov.rest.models.Entry;
 import org.springframework.messaging.MessageHeaders;

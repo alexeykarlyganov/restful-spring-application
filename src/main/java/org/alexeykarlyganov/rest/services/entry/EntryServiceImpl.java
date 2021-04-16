@@ -1,4 +1,4 @@
-package org.alexeykarlyganov.rest.services.profile;
+package org.alexeykarlyganov.rest.services.entry;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,9 +44,7 @@ public class EntryServiceImpl implements EntryService {
     public void receive(@Payload Entry entry, @Headers MessageHeaders headers) {
         log.info("=> consumed {}", this.jsonToString(entry));
 
-        headers.keySet().forEach(key -> {
-            log.info("{} --- {}", key, headers.get(key));
-        });
+        headers.keySet().forEach(key -> log.info("{} --- {}", key, headers.get(key)));
     }
 
     private String jsonToString(Entry entry) {
@@ -54,7 +52,7 @@ public class EntryServiceImpl implements EntryService {
             return objectMapper.writeValueAsString(entry);
         } catch (JsonProcessingException ex) {
             ex.printStackTrace();
-            throw new RuntimeException("Could not write JSON info: " + ex.toString());
+            throw new RuntimeException("Could not write JSON info: " + ex);
         }
     }
 }
